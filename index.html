@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email and Password Validation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form action="" class="registration">
+        <label for="email">Email</label><br>
+        <input  type="text" name="email" id="email" placeholder="Example@email.com">
+        <p id="email-para"></p><br>
+        <label for="password">Password</label><br>
+        <input  type="password" name="password" id="password" placeholder="Your Password">
+        <p id="pass-para"></p><br>
+
+        <button type="submit">Submit</button>
+    
+    </form>
+    
+
+
+    <script src="./script.js">
+    document.addEventListener("DOMContentLoaded", function() {
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const emailPara = document.getElementById("email-para");
+    const passPara = document.getElementById("pass-para");
+    const form = document.querySelector('.registration');
+
+    form.addEventListener("submit", validateForm);
+
+    function validateForm(event) {
+        event.preventDefault(); // Prevent form submission
+
+        let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+        // Reset error messages
+        emailPara.innerText = "";
+        passPara.innerText = "";
+
+        if (!email.value.match(mailformat)) {
+            emailPara.innerText = "Please enter a valid email address.";
+        }
+
+        if (password.value.length < 8) {
+            passPara.innerText = "Password must be at least 8 characters long.";
+        }
+
+        if (emailPara.innerText === "" && passPara.innerText === "") {
+            // If there are no error messages, submit the form
+            // You can add additional logic here if needed
+            // For example, you might want to redirect the user to another page
+            // form.submit();
+            passPara.innerText = "All set to go!";
+        }
+    }
+});
+
+
+
+
+
+    </script>
+</body>
+</html>
